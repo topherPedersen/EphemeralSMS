@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">EphemeralSMS</string>
+    <string name="title_activity_select_contact">SelectContactActivity</string>
+</resources>
