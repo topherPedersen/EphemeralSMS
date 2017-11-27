@@ -67,14 +67,13 @@ public class MainActivity extends AppCompatActivity {
 
     Boolean permissionGranted = false;
 
-    String bitmapDebugStr;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         askDeviceForPermission();
+        detectAndroidVersion();
 
         takePhotoBtn = (Button) findViewById(R.id.takePhotoBtn);
         takePhotoBtn.setOnClickListener(new View.OnClickListener() {
@@ -219,6 +218,11 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         requestQueue.add(request);
+    }
+
+    public void detectAndroidVersion() {
+        int androidVersion = android.os.Build.VERSION.SDK_INT;
+        Toast.makeText(getApplicationContext(), "Android Version #: " + androidVersion + "", Toast.LENGTH_SHORT).show();
     }
 
 }
