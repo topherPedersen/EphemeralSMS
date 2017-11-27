@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
     String encoded_string;
     String urlExtra;
     String image_name = "imageFromAndroidApp.jpg";
-    String debugStr = "";
     File file;
 
     InputStream targetStream;
@@ -146,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
             if (photoFile != null) {
                 // photoURI = FileProvider.getUriForFile(this, "com.phponacid.fileprovider", photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
@@ -178,33 +176,18 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            if (photoFile == null) {
-                debugStr += "photoFile == null\n";
-            }
-            if (targetStream == null) {
-                debugStr += "targetStream == null\n";
-            }
-            if (bitmap == null) {
-                debugStr += "bitmap == null\n";
-            }
-
-            /*
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             bitmap.recycle();
             byte[] array = stream.toByteArray();
             encoded_string = Base64.encodeToString(array, 0);
-            */
 
             return null;
         }
 
         @Override
         protected void onPostExecute(Void v) {
-            TextView debugTextView = (TextView) findViewById(R.id.debugTextView);
-            debugTextView.setText(debugStr);
-            // makeRequest method commented-out for debugging purposes (Android Lollipop & Earlier)
-            // makeRequest();
+            makeRequest();
         }
     }
 
@@ -218,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
                         urlExtra = "" + response + "";
 
                         Intent i = new Intent(getApplicationContext(), SelectContactActivity.class);
-                        // TODO: pass data via intent-extra
                         i.putExtra("EXTRA_URL", urlExtra);
                         startActivity(i);
 
