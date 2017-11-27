@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int PERMISSION_ALL = 0;
 
     Button takePhotoBtn;
-    Button encodeImageBtn;
-    Button displayMemoryBtn;
     File photoFile;
     Uri photoURI;
     String mCurrentPhotoPath;
@@ -62,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     String urlExtra;
     String image_name = "imageFromAndroidApp.jpg";
     File file;
+    int androidVersionNumber = returnAndroidVersion();
+    String debugStr = "";
 
     InputStream targetStream;
 
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         askDeviceForPermission();
-        detectAndroidVersion();
 
         takePhotoBtn = (Button) findViewById(R.id.takePhotoBtn);
         takePhotoBtn.setOnClickListener(new View.OnClickListener() {
@@ -107,25 +106,37 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
+    private File createImageFile(int versionParam) throws IOException {
+        if (versionParam <= 22) {
+            // Create an image file name
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String imageFileName = "JPEG_" + timeStamp + "_";
 
-        // File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        // File image = File.createTempFile(
-        //        imageFileName,  /* prefix */
-        //        ".jpg",         /* suffix */
-        //        storageDir      /* directory */
+            file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                    + File.separator + imageFileName
+            );
 
-        file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                + File.separator + imageFileName
-        );
+            photoURI = Uri.fromFile(file);
 
-        photoURI = Uri.fromFile(file);
+            // Save a file: path for use with ACTION_VIEW intents
+            mCurrentPhotoPath = file.getAbsolutePath();
+        } else if (versionParam >= 23) {
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String imageFileName = "JPEG_" + timeStamp + "_";
+            File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            file = File.createTempFile(
+                    imageFileName,  /* prefix */
+                    ".jpg",         /* suffix */
+                    storageDir      /* directory */
+            );
 
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = file.getAbsolutePath();
+            // Save a file: path for use with ACTION_VIEW intents
+            mCurrentPhotoPath = file.getAbsolutePath();
+
+            photoURI = FileProvider.getUriForFile(this,
+                    "com.phponacid.fileprovider",
+                    file);
+        }
         return file;
     }
 
@@ -136,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             try {
-                photoFile = createImageFile();
+                photoFile = createImageFile(androidVersionNumber);
             } catch (IOException ex) {
                 // Error occurred while creating the File
             }
@@ -175,6 +186,14 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            if (targetStream == null) {
+                debugStr += "targetStream == null\n";
+            }
+
+            if (bitmap == null) {
+                debugStr += "bitmap == null\n";
+            }
+
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             bitmap.recycle();
@@ -186,6 +205,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void v) {
+            // TextView debugTextView = (TextView) findViewById(R.id.debugTextView);
+            // debugTextView.setText(debugStr);
             makeRequest();
         }
     }
@@ -220,9 +241,10 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-    public void detectAndroidVersion() {
+    public int returnAndroidVersion() {
         int androidVersion = android.os.Build.VERSION.SDK_INT;
-        Toast.makeText(getApplicationContext(), "Android Version #: " + androidVersion + "", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getApplicationContext(), "Android Version #: " + androidVersion + "", Toast.LENGTH_SHORT).show();
+        return androidVersion;
     }
 
 }
