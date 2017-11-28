@@ -58,6 +58,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                 sendPhotoIntent.putExtra("RETURNED_PHONE_NUMBER", phoneNumber);
                 sendPhotoIntent.putExtra("RETURNED_URL_EXTRA", mUrlExtra);
                 mContext.startActivity(sendPhotoIntent);
+                ((Activity)mContext).finish(); // kill activity after new activity launches
             }
         });
 

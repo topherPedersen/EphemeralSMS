@@ -41,5 +41,6 @@ public class SelectContactActivity extends AppCompatActivity {
         // TODO: pass data via intent-extra
         i.putExtra("URL_EXTRA", extraUrlReceived);
         startActivity(i);
+        finish(); // kill activity after new activity launches
     }
 }

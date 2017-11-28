@@ -1,5 +1,6 @@
 package com.phponacid.ephemeralsms;
 
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -37,12 +38,16 @@ public class SendPhotoActivity extends AppCompatActivity {
         smsManager.sendTextMessage(returnedPhoneNumber, null, returnedUrlExtra, null, null);
         Toast.makeText(getApplicationContext(), "SMS Sent :)", Toast.LENGTH_LONG).show();
 
-        /*
-        String debugStr = "PHONE NUMBER: " + returnedPhoneNumber + "";
-        Toast.makeText(getApplicationContext(), debugStr, Toast.LENGTH_LONG).show();
-        debugStr = "returnedUrlExtra: " + returnedUrlExtra + "";
-        Toast.makeText(getApplicationContext(), debugStr, Toast.LENGTH_LONG).show();
-        */
+        new CountDownTimer(3000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                // do nothing
+            }
+
+            public void onFinish() {
+                finish(); // After 3 seconds (3000 milliseconds), kill the app
+            }
+        }.start();
 
     }
 }

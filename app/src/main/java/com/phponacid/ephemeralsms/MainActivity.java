@@ -234,7 +234,11 @@ public class MainActivity extends AppCompatActivity {
                         Intent i = new Intent(getApplicationContext(), SelectContactActivity.class);
                         i.putExtra("EXTRA_URL", urlExtra);
                         startActivity(i);
-                        // pd.dismiss(); // dismiss progress dialog (spinner)
+                        finish(); // kill this activity after new activity launches
+                        // pd.dismiss() method below is commented-out to make the activity transition smoother
+                        // note: when the new activity starts, the dialog is automatically dismissed.
+                        // I've left the method here in the code for reference only.
+                        // pd.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
