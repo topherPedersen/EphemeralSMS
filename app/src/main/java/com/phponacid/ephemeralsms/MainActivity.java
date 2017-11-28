@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         pd.setTitle("Processing Image");
         pd.setMessage("processing...");
         pd.setIndeterminate(false);
+        pd.setCancelable(false);
 
         takePhotoBtn = (Button) findViewById(R.id.takePhotoBtn);
         takePhotoBtn.setOnClickListener(new View.OnClickListener() {
