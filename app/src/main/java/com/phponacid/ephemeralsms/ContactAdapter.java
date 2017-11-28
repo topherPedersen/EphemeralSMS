@@ -40,6 +40,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
         // NOTE: added keyword 'final' to line of code below to fix a bug
         final Contact currentContact = getItem(position);
+        final String phoneNumber = currentContact.getPhoneNumber();
 
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.nameTextView);
         TextView phoneNumberTextView = (TextView) listItemView.findViewById(R.id.phoneNumberTextView);
@@ -48,12 +49,13 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         nameTextView.setText(currentContact.getName());
         phoneNumberTextView.setText(currentContact.getPhoneNumber());
 
+
         contactLinearLayout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String digits = currentContact.getPhoneNumber().toString();
                 // Code here executes on main thread after user presses button
                 Intent sendPhotoIntent = new Intent(mContext, SendPhotoActivity.class);
-                sendPhotoIntent.putExtra("PHONE_NUMBER", digits);
+                sendPhotoIntent.putExtra("RETURNED_PHONE_NUMBER", phoneNumber);
                 sendPhotoIntent.putExtra("RETURNED_URL_EXTRA", mUrlExtra);
                 mContext.startActivity(sendPhotoIntent);
             }
