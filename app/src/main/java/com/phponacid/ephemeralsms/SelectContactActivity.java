@@ -24,8 +24,6 @@ public class SelectContactActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         extraUrlReceived = intent.getStringExtra("EXTRA_URL");
-        Toast.makeText(getApplicationContext(),extraUrlReceived,
-                Toast.LENGTH_SHORT).show();
 
         selectContactBtn = (Button) findViewById(R.id.selectContactBtn);
         selectContactBtn.setOnClickListener(new View.OnClickListener() {
