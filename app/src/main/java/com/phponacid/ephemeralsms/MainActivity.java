@@ -2,6 +2,7 @@ package com.phponacid.ephemeralsms;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -67,12 +68,20 @@ public class MainActivity extends AppCompatActivity {
 
     Boolean permissionGranted = false;
 
+    ProgressDialog pd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         askDeviceForPermission();
+
+        pd = new ProgressDialog(MainActivity.this);
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pd.setTitle("Processing Image");
+        pd.setMessage("processing...");
+        pd.setIndeterminate(false);
 
         takePhotoBtn = (Button) findViewById(R.id.takePhotoBtn);
         takePhotoBtn.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if(resultCode == Activity.RESULT_OK){
                 // TODO: encode image after photo is taken and saved
+                pd.show(); // show progressdialog (spinner)
                 new ImageEncoder().execute();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
@@ -222,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent i = new Intent(getApplicationContext(), SelectContactActivity.class);
                         i.putExtra("EXTRA_URL", urlExtra);
+                        pd.dismiss(); // dismiss progress dialog (spinner)
                         startActivity(i);
 
                     }
