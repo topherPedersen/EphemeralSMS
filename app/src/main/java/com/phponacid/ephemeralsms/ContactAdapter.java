@@ -52,10 +52,10 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             public void onClick(View v) {
                 String digits = currentContact.getPhoneNumber().toString();
                 // Code here executes on main thread after user presses button
-                Intent mainActivityIntent = new Intent(mContext, MainActivity.class);
-                mainActivityIntent.putExtra("PHONE_NUMBER", digits);
-                mainActivityIntent.putExtra("RETURNED_URL_EXTRA", mUrlExtra);
-                mContext.startActivity(mainActivityIntent);
+                Intent sendPhotoIntent = new Intent(mContext, SendPhotoActivity.class);
+                sendPhotoIntent.putExtra("PHONE_NUMBER", digits);
+                sendPhotoIntent.putExtra("RETURNED_URL_EXTRA", mUrlExtra);
+                mContext.startActivity(sendPhotoIntent);
             }
         });
 

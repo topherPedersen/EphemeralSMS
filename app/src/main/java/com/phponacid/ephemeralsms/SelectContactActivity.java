@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class SelectContactActivity extends AppCompatActivity {
 
     Button selectContactBtn;
+    String extraUrlReceived;
 
 
     @Override
@@ -22,7 +23,7 @@ public class SelectContactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_contact);
 
         Intent intent = getIntent();
-        String extraUrlReceived = intent.getStringExtra("EXTRA_URL");
+        extraUrlReceived = intent.getStringExtra("EXTRA_URL");
         Toast.makeText(getApplicationContext(),extraUrlReceived,
                 Toast.LENGTH_SHORT).show();
 
@@ -30,26 +31,15 @@ public class SelectContactActivity extends AppCompatActivity {
         selectContactBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO: write code to select contact
-                launchSendPhotoActivity();
+                launchAddressBookActivity();
             }
         });
     }
 
-    public void launchSendPhotoActivity() {
-        Intent i = new Intent(this, SendPhotoActivity.class);
+    public void launchAddressBookActivity() {
+        Intent i = new Intent(this, AddressBookActivity.class);
         // TODO: pass data via intent-extra
-        // i.putExtra(EXTRA_FOO, "bar");
+        i.putExtra("URL_EXTRA", extraUrlReceived);
         startActivity(i);
     }
-
-    /*
-    public void displayUrlAsToast() {
-        Context context = getApplicationContext();
-        CharSequence text = extraUrl;
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-    }
-    */
 }

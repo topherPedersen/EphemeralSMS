@@ -8,11 +8,14 @@ import android.widget.Button;
 public class SendPhotoActivity extends AppCompatActivity {
 
     Button sendPhotoBtn;
+    String returnedUrlExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_photo);
+
+        returnedUrlExtra = getIntent().getStringExtra("RETURNED_URL_EXTRA");
 
         sendPhotoBtn = (Button) findViewById(R.id.sendPhotoBtn);
         sendPhotoBtn.setOnClickListener(new View.OnClickListener() {
