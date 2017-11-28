@@ -27,7 +27,7 @@ public class SendPhotoActivity extends AppCompatActivity {
         sendPhotoBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO: write code to send photo
-                sendSMS();
+                sendSMS(); // send text message
             }
         });
     }
