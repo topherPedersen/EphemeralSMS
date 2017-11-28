@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent i = new Intent(getApplicationContext(), SelectContactActivity.class);
                         i.putExtra("EXTRA_URL", urlExtra);
                         startActivity(i);
-                        pd.dismiss(); // dismiss progress dialog (spinner)
+                        // pd.dismiss(); // dismiss progress dialog (spinner)
                     }
                 }, new Response.ErrorListener() {
             @Override
