@@ -12,7 +12,6 @@ public class SendPhotoActivity extends AppCompatActivity {
     Button sendPhotoBtn;
     String returnedUrlExtra;
     String returnedPhoneNumber;
-    SmsManager smsManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +20,7 @@ public class SendPhotoActivity extends AppCompatActivity {
 
         returnedUrlExtra = getIntent().getStringExtra("RETURNED_URL_EXTRA");
         returnedPhoneNumber = getIntent().getStringExtra("RETURNED_PHONE_NUMBER");
+        returnedPhoneNumber = returnedPhoneNumber.replaceAll("[^0-9]", ""); // bug fix: removes non-numerical chars from phoneNumber
 
 
         sendPhotoBtn = (Button) findViewById(R.id.sendPhotoBtn);
@@ -33,7 +33,16 @@ public class SendPhotoActivity extends AppCompatActivity {
     }
 
     public void sendSMS() {
+        SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(returnedPhoneNumber, null, returnedUrlExtra, null, null);
         Toast.makeText(getApplicationContext(), "SMS Sent :)", Toast.LENGTH_LONG).show();
+
+        /*
+        String debugStr = "PHONE NUMBER: " + returnedPhoneNumber + "";
+        Toast.makeText(getApplicationContext(), debugStr, Toast.LENGTH_LONG).show();
+        debugStr = "returnedUrlExtra: " + returnedUrlExtra + "";
+        Toast.makeText(getApplicationContext(), debugStr, Toast.LENGTH_LONG).show();
+        */
+
     }
 }
