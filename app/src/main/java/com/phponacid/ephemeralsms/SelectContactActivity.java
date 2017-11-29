@@ -9,11 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class SelectContactActivity extends AppCompatActivity {
 
-    Button selectContactBtn;
+    ImageView selectContactBtn;
     String extraUrlReceived;
 
 
@@ -25,7 +26,7 @@ public class SelectContactActivity extends AppCompatActivity {
         Intent intent = getIntent();
         extraUrlReceived = intent.getStringExtra("EXTRA_URL");
 
-        selectContactBtn = (Button) findViewById(R.id.selectContactBtn);
+        selectContactBtn = (ImageView) findViewById(R.id.selectContactBtn);
         selectContactBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO: write code to select contact
