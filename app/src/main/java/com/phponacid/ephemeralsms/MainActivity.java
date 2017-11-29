@@ -84,9 +84,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView activityMainH1 = (TextView) findViewById(R.id.activityMainH1);
+        TextView activityMainH2 = (TextView) findViewById(R.id.activityMainH2);
+        TextView activityMainH3 = (TextView) findViewById(R.id.activityMainH3);
         Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/chunkfive.otf");
         activityMainH1.setTypeface(typeFace);
-
+        activityMainH2.setTypeface(typeFace);
+        activityMainH3.setTypeface(typeFace);
 
         askDeviceForPermission();
 
