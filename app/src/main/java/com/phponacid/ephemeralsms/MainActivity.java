@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -79,7 +80,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getSupportActionBar().hide();
+
         setContentView(R.layout.activity_main);
+
+        TextView activityMainH1 = (TextView) findViewById(R.id.activityMainH1);
+        Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/chunkfive.otf");
+        activityMainH1.setTypeface(typeFace);
 
 
         askDeviceForPermission();
