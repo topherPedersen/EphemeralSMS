@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#7E60E2</color>
     <color name="colorAccent">#7E60E2</color>
     <color name="ephemeralPurple">#7E60E2</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

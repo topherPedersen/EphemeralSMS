@@ -12,11 +12,13 @@
 
         <TextView
             android:id="@+id/nameTextView"
+            android:textColor="@color/colorWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/phoneNumberTextView"
+            android:textColor="@color/colorWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
