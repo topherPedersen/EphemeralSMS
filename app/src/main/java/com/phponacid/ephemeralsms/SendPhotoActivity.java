@@ -1,5 +1,6 @@
 package com.phponacid.ephemeralsms;
 
+import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SendPhotoActivity extends AppCompatActivity {
@@ -19,9 +21,19 @@ public class SendPhotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getSupportActionBar().hide();
+
         setContentView(R.layout.activity_send_photo);
+
+        TextView activitySendPhotoH1 = (TextView) findViewById(R.id.activitySendPhotoH1);
+        TextView activitySendPhotoH2 = (TextView) findViewById(R.id.activitySendPhotoH2);
+        TextView activitySendPhotoH3 = (TextView) findViewById(R.id.activitySendPhotoH3);
+        Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/chunkfive.otf");
+        activitySendPhotoH1.setTypeface(typeFace);
+        activitySendPhotoH2.setTypeface(typeFace);
+        activitySendPhotoH3.setTypeface(typeFace);
 
         returnedUrlExtra = getIntent().getStringExtra("RETURNED_URL_EXTRA");
         returnedPhoneNumber = getIntent().getStringExtra("RETURNED_PHONE_NUMBER");

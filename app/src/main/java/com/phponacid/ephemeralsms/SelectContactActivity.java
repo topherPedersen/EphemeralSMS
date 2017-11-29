@@ -2,6 +2,7 @@ package com.phponacid.ephemeralsms;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SelectContactActivity extends AppCompatActivity {
@@ -24,7 +26,26 @@ public class SelectContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // for some reason this activity does not feature an action bar,
         // so the code that disables the action bar has been removed (NullPointerException)
+
+        /*
+        TextView activitySelectContactH1 = (TextView) findViewById(R.id.activitySelectContactH1);
+        TextView activitySelectContactH2 = (TextView) findViewById(R.id.activitySelectContactH2);
+        TextView activitySelectContactH3 = (TextView) findViewById(R.id.activitySelectContactH3);
+        Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/chunkfive.otf");
+        activitySelectContactH1.setTypeface(typeFace);
+        activitySelectContactH2.setTypeface(typeFace);
+        activitySelectContactH3.setTypeface(typeFace);
+        */
+
         setContentView(R.layout.activity_select_contact);
+
+        TextView activitySelectContactH1 = (TextView) findViewById(R.id.activitySelectContactH1);
+        TextView activitySelectContactH2 = (TextView) findViewById(R.id.activitySelectContactH2);
+        TextView activitySelectContactH3 = (TextView) findViewById(R.id.activitySelectContactH3);
+        Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/chunkfive.otf");
+        activitySelectContactH1.setTypeface(typeFace);
+        activitySelectContactH2.setTypeface(typeFace);
+        activitySelectContactH3.setTypeface(typeFace);
 
         Intent intent = getIntent();
         extraUrlReceived = intent.getStringExtra("EXTRA_URL");
