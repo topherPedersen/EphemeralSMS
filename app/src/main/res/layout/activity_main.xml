@@ -1,40 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.phponacid.ephemeralsms.MainActivity">
 
+
     <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="66dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="40sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EphemeralSMS" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="17sp"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send Short-Lived Disappearing Photos Via Text-Message" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="66dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <Button
+        <ImageView
             android:id="@+id/takePhotoBtn"
+            android:adjustViewBounds="true"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/camera"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="27sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tap to Take Photo" />
-
     </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/debugTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="" />
-
-    </LinearLayout>
-
 
 </LinearLayout>

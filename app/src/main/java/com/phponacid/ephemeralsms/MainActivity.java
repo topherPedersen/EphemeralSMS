@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 1;
     public static final int PERMISSION_ALL = 0;
 
-    Button takePhotoBtn;
+    ImageView takePhotoBtn;
     File photoFile;
     Uri photoURI;
     String mCurrentPhotoPath;
@@ -84,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         pd.setIndeterminate(false);
         pd.setCancelable(false);
 
-        takePhotoBtn = (Button) findViewById(R.id.takePhotoBtn);
+        takePhotoBtn = (ImageView) findViewById(R.id.takePhotoBtn);
         takePhotoBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO: write code to take photo
