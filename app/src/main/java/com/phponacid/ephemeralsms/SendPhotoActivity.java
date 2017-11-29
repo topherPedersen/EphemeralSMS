@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class SendPhotoActivity extends AppCompatActivity {
 
-    Button sendPhotoBtn;
+    ImageView sendPhotoBtn;
     String returnedUrlExtra;
     String returnedPhoneNumber;
 
@@ -24,7 +25,7 @@ public class SendPhotoActivity extends AppCompatActivity {
         returnedPhoneNumber = returnedPhoneNumber.replaceAll("[^0-9]", ""); // bug fix: removes non-numerical chars from phoneNumber
 
 
-        sendPhotoBtn = (Button) findViewById(R.id.sendPhotoBtn);
+        sendPhotoBtn = (ImageView) findViewById(R.id.sendPhotoBtn);
         sendPhotoBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO: write code to send photo
