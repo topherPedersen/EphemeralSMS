@@ -3,6 +3,7 @@ package com.phponacid.ephemeralsms;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,9 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         nameTextView.setText(currentContact.getName());
         phoneNumberTextView.setText(currentContact.getPhoneNumber());
 
+        Typeface typeFace= Typeface.createFromAsset(mContext.getAssets(),"fonts/chunkfive.otf");
+        nameTextView.setTypeface(typeFace);
+        phoneNumberTextView.setTypeface(typeFace);
 
         contactLinearLayout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
